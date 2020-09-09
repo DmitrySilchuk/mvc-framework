@@ -26,8 +26,9 @@ class Router {
     // defining controller and action from URL
     private function getController(&$file, &$controller, &$action, &$args) {
         $route = empty($_SERVER['PATH_INFO']) ? '' : $_SERVER['PATH_INFO'];
+
         if (empty($route)) {
-            $route = 'default';
+            $route = 'Default';
         }
         // get parts of url
         $route = trim($route, '/\\');
@@ -36,18 +37,18 @@ class Router {
         // find the controller
         $controllersDirectory = $this->path;
         foreach ($parts as $part) {
-            $fullpath = $controllersDirectory . $part;
+            $fullpath = $controllersDirectory;
 
             // Checking for folder existence
-            if (is_dir($fullpath)) {
+            if (is_dir($fullpath . $part)) {
                 $controllersDirectory .= $part . DIRECTORY_SEPARATOR;
                 array_shift($parts);
                 continue;
             }
 
             // find the file
-            if (is_file($fullpath . '.php')) {
-                $controller = $part;
+            if (is_file($fullpath . ucfirst($part) . 'Controller.php')) {
+                $controller = ucfirst($part) . 'Controller';
                 array_shift($parts);
                 break;
             }
@@ -55,7 +56,7 @@ class Router {
 
         // if urle does not specify a controller, then use the default index
         if (empty($controller)) {
-            $controller = 'default';
+            $controller = 'Default';
         }
 
         // get the action
@@ -84,8 +85,7 @@ class Router {
         include ($file);
 
         // Instantiating the controller
-        $class = ucfirst($controller) . 'Controller';
-        $controller = new $class($this->registry);
+        $controller = new $controller($this->registry);
 
         // If the action doesn't exist - 404
         if (is_callable([$controller, $action]) == false) {

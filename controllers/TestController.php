@@ -1,7 +1,7 @@
 <?php
 
 
-class TestController {
+class TestController extends Main {
 
     public function actionIndex() {
         echo 'Hello My Index';
