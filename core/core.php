@@ -8,7 +8,7 @@ spl_autoload_register(function ($className) {
     if (endsWith( $className, 'Controller' )) {
         $folder = 'controllers';
     }
-    else if (endsWith( $className, 'Model' )) {
+    else if (endsWith( $className, 'Model' ) && $className != 'MainModel') {
         $folder = 'models';
     }
     else {

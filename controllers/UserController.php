@@ -5,9 +5,13 @@ class UserController extends Main {
 
     public $layouts = "main";
     public function actionIndex() {
-        $model = new UserModel();
-        $userInfo = $model->getUser();
-        $this->template->vars('userInfo', $userInfo);
+        $select = array(
+            'order' => 'id ASC'
+        );
+        $model = new UserModel($select);
+        $usersInfo = $model->getAllRows();
+
+        $this->template->vars('usersInfo', $usersInfo);
         $this->template->view('index');
     }
 }
