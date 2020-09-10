@@ -1,6 +1,7 @@
 <?php
 /**
-* $usersInfo UserModel[]
+* @var $usersInfo UserModel[]
+* @var $departments []
  */
 ?>
 <h1>All users</h1>
@@ -26,7 +27,9 @@
             <td><?= $user['email'] ?></td>
             <td><?= $user['address'] ?></td>
             <td><?= $user['phone'] ?></td>
-            <td><?= $user['department_id'] ?></td>
+            <td>
+                <?= !empty($departments[$user['department_id']]) ? $departments[$user['department_id']] : ''; ?>
+            </td>
             <td>
                 <a href="/user/view/<?= $user['id'] ?>" title="View" aria-label="View">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

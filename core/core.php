@@ -34,6 +34,14 @@ function endsWith( $haystack, $needle ) {
     return substr( $haystack, -$length ) === $needle;
 }
 
+function makeIndexedArrayById($arr) {
+    $indexedArray = [];
+    foreach ($arr as $item) {
+        $indexedArray[$item[0]] = $item[1];
+    }
+
+    return $indexedArray;
+}
 
 // start registry
 $registry = new Registry;
