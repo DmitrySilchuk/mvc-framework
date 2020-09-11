@@ -8,7 +8,7 @@ Class UserModel Extends MainModel {
     public $name;
     public $address;
     public $phone;
-    public $comments;
+    public $comment;
     public $department_id;
 
     public function fieldsTable(){
