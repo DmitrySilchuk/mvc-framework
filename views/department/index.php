@@ -17,10 +17,10 @@
     </tr>
     </thead>
     <?php
-    foreach ($departments as $key => $department) { ?>
+    foreach ($departments as $department) { ?>
         <tr class="content-position">
-            <td><?= $key ?></td>
-            <td><?= $department ?></td>
+            <td><?= $department['id'] ?></td>
+            <td><?= $department['name'] ?></td>
             <td>
                 <a href="/department/view/<?= $department['id'] ?>" title="View" aria-label="View">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

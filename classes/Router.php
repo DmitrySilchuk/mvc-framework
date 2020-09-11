@@ -92,7 +92,12 @@ class Router {
             die ('404 Not Found');
         }
 
-        // executing the action
-        $controller->$action();
+        // Do action
+         if (empty($args)) {
+             $controller->$action();
+         }
+         else {
+             $controller->$action($args);
+         }
     }
 }

@@ -73,6 +73,7 @@ Abstract Class MainModel {
             $db = $this->db;
             $stmt = $db->prepare("INSERT INTO {$this->getTableName()} ($forQueryFields) values ($forQueryPlace)");
             $result = $stmt->execute($arrayData);
+            $this->id = $db->lastInsertId();
         }catch(PDOException $e){
             echo 'Error : '.$e->getMessage();
             echo '<br/>Error sql : ' . "'INSERT INTO {$this->getTableName()} ($forQueryFields) values ($forQueryPlace)'";
